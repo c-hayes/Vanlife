@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export async function getVans(id) {
+  const url = id ? `/api/vans/${id}` : "/api/vans"
+  const res = await fetch(url)
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch vans",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const data = await res.json()
+  return data.vans
 }
 
-export default App;
+export async function getHostVans(id) {
+  const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
+  const res = await fetch(url)
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch vans",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const data = await res.json()
+  return data.vans
+}
