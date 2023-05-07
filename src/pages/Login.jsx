@@ -54,6 +54,7 @@ export default function Login() {
                     type="password"
                     placeholder="Password"
                 />
+                <p>This feature is disabled in this preview</p>
                 <button
                     disabled={navigation.state === "submitting"}
                 >
